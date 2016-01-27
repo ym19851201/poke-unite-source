@@ -1,0 +1,5 @@
+/src/scrape.rb
+/vendor/
+Gemfile
+Gemfile.lock
+/.bundle/

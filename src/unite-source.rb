@@ -11,7 +11,15 @@ type_hash = {'11' => 'くさ', '3' => 'どく', '9' => 'ほのお', '2' => 'ひ�
 
 this_dir = File.expand_path(File.dirname(__FILE__))
 open(this_dir + '/data.txt') do |f|
-  obj = JSON.load f
+  data = f.read
+  data = data.encode(
+    'utf-16',
+      'utf-8', 
+        :invalid => :replace, 
+          :undef => :replace
+  ).encode('utf-8')
+
+  obj = JSON.load data
   obj.each.with_index do |e, i|
     no = i + 1
     types = e['types'].flatten
